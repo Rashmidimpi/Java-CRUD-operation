@@ -1,7 +1,14 @@
 package com.mb.demo.persistance.entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 import com.mb.demo.persistance.common.entity.BaseEntity;
 @Entity
@@ -16,6 +23,12 @@ public class User extends BaseEntity{
     private String password;
     @Column(name = "phone_number")
     private String phoneNumber;
+    
+    @ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(	name = "user_roles", 
+				joinColumns = @JoinColumn(name = "user_id"), 
+				inverseJoinColumns = @JoinColumn(name = "role_id"))
+	private Set<Role> roles = new HashSet<>();
 	public String getFirstName() {
 		return firstName;
 	}
