@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mb.demo.business.service.UserService;
-import com.mb.demo.persistance.entity.User;
+import com.mb.demo.persistance.entity.UserEntity;
 import com.mb.demo.web.model.UserModel;
 
 @RestController
@@ -36,7 +36,7 @@ public class UserController {
 	}
 	
 	@GetMapping("/get")
-	public List<User> getUsers() {
+	public List<UserEntity> getUsers() {
 		
 		return userService.getUserInformation();
 	}

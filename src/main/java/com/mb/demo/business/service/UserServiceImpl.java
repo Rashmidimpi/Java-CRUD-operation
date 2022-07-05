@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mb.demo.business.constant.DemoConstant;
-import com.mb.demo.persistance.entity.User;
+import com.mb.demo.persistance.entity.UserEntity;
 import com.mb.demo.persistance.repository.UserRepository;
 import com.mb.demo.web.model.UserModel;
 
@@ -26,7 +26,7 @@ public class UserServiceImpl implements UserService{
 	public String saveUserInformation(UserModel userModel) {
 		// TODO Auto-generated method stub
 		
-		User user = mapper.map(userModel, User.class);
+		UserEntity user = mapper.map(userModel, UserEntity.class);
 		userRepository.save(user);
 	     return DemoConstant.MSG_SUCCESS;
 	}
@@ -40,14 +40,14 @@ public class UserServiceImpl implements UserService{
 	public String updateUserInformation(UserModel userModel) {
 		// TODO Auto-generated method stub
 
-		User user = mapper.map(userModel, User.class);
+		UserEntity user = mapper.map(userModel, UserEntity.class);
 		userRepository.save(user);
 		return DemoConstant.MSG_SUCCESS;
 	}
 
 
 	@Override
-	public List<User> getUserInformation() {
+	public List<UserEntity> getUserInformation() {
 		// TODO Auto-generated method stub
 		return userRepository.findAll();
 	}
@@ -57,7 +57,7 @@ public class UserServiceImpl implements UserService{
 	public String deleteUserInformation(Integer id) {
 		// TODO Auto-generated method stub
 //		User user = mapper.map(userModel, User.class);
-		Optional<User> user = userRepository.findById(id);
+		Optional<UserEntity> user = userRepository.findById(id);
 		if(user.isPresent()) {
 		userRepository.delete(user.get());
 		return DemoConstant.MSG_SUCCESS;
@@ -70,7 +70,7 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public void softDeleteUserInformation(UserModel userModel) {
 		// TODO Auto-generated method stub
-		User user = mapper.map(userModel, User.class);
+		UserEntity user = mapper.map(userModel, UserEntity.class);
 		user.setDeleted(true);
 		userRepository.save(user);
 		

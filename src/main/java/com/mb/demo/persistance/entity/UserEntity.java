@@ -12,7 +12,7 @@ import javax.persistence.ManyToMany;
 
 import com.mb.demo.persistance.common.entity.BaseEntity;
 @Entity
-public class User extends BaseEntity{
+public class UserEntity extends BaseEntity{
 	@Column(name = "first_name")
     private String firstName;
     @Column(name = "last_name")
